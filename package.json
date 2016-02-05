@@ -1,0 +1,39 @@
+{
+  "name": "sleepsnear",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "dependencies": {
+    "browserify": "^13.0.0",
+    "openlayers": "^3.13.1",
+    "react-dom": "^0.14.7"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.2",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.0",
+    "browserify-css": "^0.9.0",
+    "css-modulesify": "^0.17.0",
+    "watchify": "^3.7.0",
+    "webpack": "^1.12.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aequanimitas/sleepsnear.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aequanimitas/sleepsnear/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify client.js -o bundle.js -t [ babelify --presets [ es2015 react ] ]",
+    "watch": "watchify client.js -o bundle.js --debug --verbose -t [ babelify --presets [ es2015 react ] ]"
+  },
+  "homepage": "https://github.com/aequanimitas/karasa#readme"
+}
