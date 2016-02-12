@@ -8,19 +8,13 @@ let localserve = new ol.layer.Tile({
     url: 'http://localhost/osm_tiles/{z}/{x}/{y}.png'
   })
 });
+const kvcr = ol.proj.fromLonLat([121.1067147216795, 14.60966442647526]);
+const view = new ol.View({ center: kvcr, zoom: 18 });
 
 const map = new ol.Map({
   target: 'map',
-  layers: [
-    localserve
-  ],
-  view: new ol.View({
-    center: [
-      13481363.197416633,
-      1644099.866239368
-    ],
-    zoom: 18
-  })
+  layers: [ localserve ],
+  view: view
 });
 
 class App extends Component {

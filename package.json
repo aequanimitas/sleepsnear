@@ -4,7 +4,6 @@
   "description": "",
   "main": "client.js",
   "dependencies": {
-    "browserify": "^13.0.0",
     "openlayers": "^3.13.1",
     "react-dom": "^0.14.7"
   },
@@ -35,5 +34,5 @@
     "build": "browserify client.js -o bundle.js -t [ babelify --presets [ es2015 react ] ]",
     "watch": "watchify client.js -o bundle.js --debug --verbose -t [ babelify --presets [ es2015 react ] ]"
   },
-  "homepage": "https://github.com/aequanimitas/karasa#readme"
+  "homepage": "https://github.com/aequanimitas/sleepsnear#readme"
 }
