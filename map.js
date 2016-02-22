@@ -1,15 +1,5 @@
 import ol from 'openlayers';
-
-// Try adding vector (marker)
-let iconFeature = new ol.Feature({
-  geometry: new ol.geom.Point([
-    13480929.954728967,
-    1645313.0054812531
-  ]),
-  name: 'Sta. Lucia Mall',
-  population: 4000,
-  rainfall: 500
-});
+import points from './sampleData';
 
 let iconStyle = new ol.style.Style({
   image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
@@ -21,31 +11,26 @@ let iconStyle = new ol.style.Style({
   }))
 });
 
-iconFeature.setStyle(iconStyle);
+let apartments = points.map((e) => {
+  let apartment = new ol.Feature({
+    geometry: new ol.geom.Point(e.coords),
+    name: e.name
+  });
+  apartment.setStyle(iconStyle);
+  return apartment;
+});
 
 let vectorSource = new ol.source.Vector({
-  features: [iconFeature]
+  features: apartments
 });
 
 let vectorLayer = new ol.layer.Vector({
   source: vectorSource
 });
 
-// end vector
-
-
 const localhostMapserver = new ol.source.OSM({
   url: 'http://localhost/osm_tiles/{z}/{x}/{y}.png'
 });
-
-const exampleData = {
-  center: [121.1067147216795, 14.60966442647526],
-  fromLocation: [
-    //[13480944.883836057, 1645313.6026455371],
-    [1645313.6026455371,  13480944.883836057],
-    [13481344.834614918, 1643710.9629997532]
-  ]
-};
 
 let localserve = new ol.layer.Tile({ source: localhostMapserver });
 
