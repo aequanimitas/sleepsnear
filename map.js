@@ -1,17 +1,38 @@
 import ol from 'openlayers';
 
 // Try adding vector (marker)
-//
-
 let iconFeature = new ol.Feature({
-  geometry: new ol.geom.Point([0,0])
+  geometry: new ol.geom.Point([
+    13480929.954728967,
+    1645313.0054812531
+  ]),
+  name: 'Sta. Lucia Mall',
+  population: 4000,
+  rainfall: 500
 });
 
 let iconStyle = new ol.style.Style({
   image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-
-  })
+    anchor: [0.5, 46],
+    anchorXUnits: 'fraction',
+    anchorYUnits: 'pixels',
+    opacity: 0.75,
+    src: 'data/icon.png'
+  }))
 });
+
+iconFeature.setStyle(iconStyle);
+
+let vectorSource = new ol.source.Vector({
+  features: [iconFeature]
+});
+
+let vectorLayer = new ol.layer.Vector({
+  source: vectorSource
+});
+
+// end vector
+
 
 const localhostMapserver = new ol.source.OSM({
   url: 'http://localhost/osm_tiles/{z}/{x}/{y}.png'
@@ -26,35 +47,6 @@ const exampleData = {
   ]
 };
 
-let vectorSource = new ol.source.Vector({});
-
-let markerStyle = {
-  'icon': new ol.style.Style({
-     image: new ol.style.Icon({
-      anchor: [0.5, 0.5],
-      src: 'http://openlayers.org/en/master/examples/data/icon.png'
-    })
-  })
-}
-
-let marker = new ol.Feature({
-  type: 'icon',
-  geometry: new ol.geom.Point(exampleData.fromLocation[0], 'EPSG:4326', 'EPSG:3857')
-});
-
-vectorSource.addFeature(marker);
-
-let markerLayer = new ol.layer.Vector({
-  source: new ol.source.Vector({
-    features: [marker]
-  }),
-  style: function(feature) {
-    console.log(feature);
-    return markerStyle[feature.get('type')];
-  }
-});
-
-
 let localserve = new ol.layer.Tile({ source: localhostMapserver });
 
 const kvcr = ol.proj.fromLonLat([121.1067147216795, 14.60966442647526]);
@@ -62,11 +54,10 @@ const view = new ol.View({ center: kvcr, zoom: 18 });
 
 const map = new ol.Map({
   target: 'map',
-  layers: [ markerLayer, localserve ],
+  layers: [ localserve, vectorLayer ],
   view: view
 });
 
 map.on('click', (e) => {
-  //console.log(ol.proj.transform(e.coordinate, 'EPSG:4326', 'EPSG:3857'));
   console.log(e);
 });
