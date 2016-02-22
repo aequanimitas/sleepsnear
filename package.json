@@ -16,6 +16,7 @@
     "browserify": "^13.0.0",
     "browserify-css": "^0.9.0",
     "css-modulesify": "^0.17.0",
+    "sassify": "^0.9.1",
     "watchify": "^3.7.0",
     "webpack": "^1.12.13"
   },
@@ -31,8 +32,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify client.js -o bundle.js -t [ babelify --presets [ es2015 react ] ]",
-    "watch": "watchify client.js -o bundle.js --debug --verbose -t [ babelify --presets [ es2015 react ] ]"
+    "build": "browserify client.js -o bundle.js -t sassify [ babelify --presets [ es2015 react ] ]",
+    "watch": "watchify -t sassify client.js -o bundle.js -v --debug -t [ babelify --presets [ es2015 react ] ]"
   },
   "homepage": "https://github.com/aequanimitas/sleepsnear#readme"
 }

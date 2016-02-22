@@ -1,5 +1,18 @@
 import ol from 'openlayers';
 
+// Try adding vector (marker)
+//
+
+let iconFeature = new ol.Feature({
+  geometry: new ol.geom.Point([0,0])
+});
+
+let iconStyle = new ol.style.Style({
+  image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
+
+  })
+});
+
 const localhostMapserver = new ol.source.OSM({
   url: 'http://localhost/osm_tiles/{z}/{x}/{y}.png'
 });
@@ -36,7 +49,8 @@ let markerLayer = new ol.layer.Vector({
     features: [marker]
   }),
   style: function(feature) {
-    return markerStyle[feature.get('type')]
+    console.log(feature);
+    return markerStyle[feature.get('type')];
   }
 });
 
@@ -48,7 +62,7 @@ const view = new ol.View({ center: kvcr, zoom: 18 });
 
 const map = new ol.Map({
   target: 'map',
-  layers: [ localserve, markerLayer ],
+  layers: [ markerLayer, localserve ],
   view: view
 });
 
