@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sleepsnear</title>
-  <link rel="stylesheet" href="node_modules/openlayers/css/ol.css">
-  <link rel="stylesheet" href="client.css">
-</head>
-<body>
-  <div id="map"></div>
-  <div id="root"></div>
-  <script src="bundle.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+    <style>
+body { margin:0; padding:0; }
+.map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+  </head>
+  <body>
+    <div id='map-one' class='map'> </div>
+    <script>
+L.mapbox.accessToken = 'pk.eyJ1IjoiaHRhdmVuaWRvIiwiYSI6ImNpdDZ5OWVzNTA0cTAyeW13MGp6c2VraXAifQ.AC-FNVom76nY23VRXFzBVQ';
+L.mapbox.map('map-one', 'mapbox.streets').setView([38.8929,-77.0252], 14);
+    </script>
+  </body>
 </html>
